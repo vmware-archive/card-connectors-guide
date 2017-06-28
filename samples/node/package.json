@@ -1,0 +1,16 @@
+{
+  "name": "weather_connector",
+  "version": "0.1.0",
+  "description": "Sample connector to demonstrate spec",
+  "author": "Rob Worsnop <rworsnop@vmware.com>",
+  "main": "connector.js",
+  "scripts": {
+    "start": "node connector.js"
+  },
+  "dependencies": {
+    "express" : "4.15.x",
+    "body-parser" : "1.17.x",
+    "command-line-args" : "4.0.x",
+    "uuid" : "3.0.x"
+  }
+}
