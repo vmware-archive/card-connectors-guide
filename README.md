@@ -17,16 +17,18 @@ A client requests a weather card and the following request is forwarded to the c
 ```
 $ curl -H "Authorization: Bearer abcdef" \
 -H "Content-Type: application/json" \
+-H "Accept: application/json" \
 -X POST -d '{"tokens":{"zip":["30360"]}}' \
-https://weather.acme.com/cards/requests
+https://weather-connector.acme.com/cards/requests
 ```
 The card includes current weather conditions for ZIP code 30360, as well as an action to report the current temperature. If the user chooses that action, the following request will be forwarded to the connector:
 
 ```
 $ curl -H "Authorization: Bearer abcdef" \
 -H "Content-Type: application/x-www-form-urlencoded" \
+-H "Accept: application/json" \
 -X POST -d "zip=30360&temperature=78" \
-https://weather.acme.com/reports
+https://weather-connector.acme.com/reports
 ```
 A stubbed service based on the above can be found in the [samples section](samples/node) of this project.
 
