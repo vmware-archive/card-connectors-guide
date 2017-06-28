@@ -1,6 +1,6 @@
 
 
-# Contributing to card-connectors-guide
+# Contributing to the Card Connectors Guide
 
 The card-connectors-guide project team welcomes contributions from the community. If you wish to contribute code and you have not
 signed our contributor license agreement (CLA), our bot will update the issue when you open a Pull Request. For any
@@ -79,5 +79,3 @@ and commits.
 ## Reporting Bugs and Creating Issues
 
 When opening a new issue, try to roughly follow the commit message format conventions above.
-
-## Repository Structure
