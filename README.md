@@ -34,4 +34,4 @@ A stubbed service based on the above can be found in the [samples section](sampl
 
 ## Further reading
 
-For a detailed specification, please see the [wiki](wiki).
+For a detailed specification, please see the [wiki](https://github.com/vmware/card-connectors-guide/wiki).
