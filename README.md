@@ -30,4 +30,6 @@ https://weather.acme.com/reports
 ```
 A stubbed service based on the above can be found in the [samples section](samples/node) of this project.
 
-For the detailed connector specification, please see the [wiki](wiki).
+## Further reading
+
+For a detailed specification, please see the [wiki](wiki).
