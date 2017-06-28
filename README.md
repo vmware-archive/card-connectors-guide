@@ -2,12 +2,12 @@
 
 ## Overview
 
-This project serves as a guide for writing connectors for the Hero Card service. A connector is an adapter with two responsibilities:
+This serves as a guide for writing connectors for the Hero Card service. A connector is an adapter with two responsibilities:
 
 * Based on card requests, render cards. This would typically be achieved by accessing an external backend system. The card is a JSON structure that allows a client to display something meaningful to the user. The card also includes references to actions the user can take, relevant to the context of the card.
 * Provide endpoints for all actions advertised in the card.
 
-All communication with a connector is over HTTPS. A connector must offer a standard HTTP API, but has no other requirements. A connector can be written in any language that allows the developer to create HTTP endpoints. 
+All communication with a connector is over HTTPS. A connector can be written in any language that allows the developer to create HTTP endpoints. 
 
 ## Example
 
