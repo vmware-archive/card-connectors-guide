@@ -1,10 +1,14 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "title": "Roswell Hero Card Request schema",
+  "title": "Hero Card Request schema",
 
   "properties": {
-    "id":     {"type": "string"},
+    "connector_id":     {
+      "type": "string",
+      "description": "The ID of the connector"
+    },
     "tokens": {"type": "object",
+               "description": "Tokens used by connector to render cards"
                "patternProperties": {
                  "[a-z0-9_-]*": {"type": "array", "items": {"type": "string"}}
                }
