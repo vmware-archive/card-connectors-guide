@@ -1,42 +1,44 @@
-
+{
   "$schema": "http://json-schema.org/schema#",
-  "title": "Roswell Hero Card response schema",
+  "title": "Hero Card response schema",
 
   "type": "object",
   "properties": {
-    "cards": {"type": "array", "items": {"$ref": "#/definitions/CARD"}},
-    "connector_statuses": {"type": "array"}
+    "cards": {"type": "array", "items": {"$ref": "#/definitions/card"}}
   },
   "additionalProperties": false,
 
 
   "definitions": {
-    "CARD": {
+    "card": {
       "type": "object",
       "properties":     {
-        "id":           {"type": "string", "pattern": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$"},
-        "connector_id": {"type": "string"},
-        "name":         {"type": "string"},
-        "creation_date": {"type": "string", "format": "date-time"},
-        "expiration_date" :{"type": "string", "format": "date-time"},
-        "template":     {"$ref": "#/definitions/LINK"},
-        "header":       {"$ref": "#/definitions/CARD_HEADER"},
-        "body":         {"$ref": "#/definitions/CARD_BODY"},
-        "actions":      {"type": "array", "items": {"$ref": "#/definitions/CARD_ACTION"}}
+        "id":           {"type": "string",
+          "description": "Unique ID of the card",
+          "pattern": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$"
+        },
+        "connector_id": {"type": "string", "description": "ID of the connector"},
+        "name":         {"type": "string", "description": "Name of the connector"},
+        "creation_date": {"type": "string", "format": "date-time", "description": "When the card was created. In ISO 8601 format"},
+        "expiration_date" :{"type": "string", "format": "date-time", "description": "When the card will expire. In ISO 8601 format"},
+        "template":     {"$ref": "#/definitions/link", "description": "Link to a Handlebars template for rendering the card"},
+        "header":       {"$ref": "#/definitions/cardHeader", "description": "The card's header"},
+        "body":         {"$ref": "#/definitions/cardBody", "description": "The card's body"},
+        "actions":      {"type": "array", "items": {"$ref": "#/definitions/cardAction"}}
       },
       "additionalProperties": false
     },
 
-    "LINK": {
+    "link": {
       "type": "object",
       "properties": {
-        "href": {"type": "string"}
+        "href": {"type": "uri"}
       },
       "required": ["href"],
       "additionalProperties": false
     },
 
-    "CARD_HEADER": {
+    "cardHeader": {
       "type": "object",
       "properties": {
         "title":    {"type": "string"},
@@ -45,59 +47,76 @@
       "additionalProperties": false
     },
 
-    "CARD_BODY": {
+    "cardBody": {
       "type": "object",
       "properties": {
-        "description": {"type": "string"},
-        "fields":      {"type": "array", "items": {"$ref": "#/definitions/CARD_BODY_FIELD"}}
+        "description": {
+          "type": "string",
+          "description": "Description of the body. This would typically be rendered as plain body text near the top of the card"},
+        "fields":      {
+          "type": "array",
+          "items": {"$ref": "#/definitions/cardBodyField"},
+          "description": "The fields of the body, if any. Fields are rendered differently according to their type attribute"
+        }
       },
       "additionalProperties": false
     },
 
-    "CARD_BODY_FIELD": {
+    "cardBodyField": {
       "type": "object",
       "properties": {
         "type":        {"type": "string"},
         "title":       {"type": "string"},
         "description": {"type": "string"},
-        "content":     {"type": "array", "items": {"type": "object"}}
+        "content":     {
+          "type": "array",
+          "items": {"type": "object"},
+          "description": "The content of this field, which can consist of arbitrary JSON objects. The client will use the field's type attribute to determine how to parse the content."
+        }
       },
       "additionalProperties": false
     },
 
-    "CARD_ACTION": {
+    "cardAction": {
       "type": "object",
       "properties": {
-        "id":         {"type": "string", "pattern": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$"},
-        "action_key": {"type": "string"},
-        "label":      {"type": "string"},
-        "url":        {"$ref": "#/definitions/LINK"},
-        "type":       {"$ref": "#/definitions/HTTP_METHODS"},
-        "user_input": {"type": "array", "items": {"$ref": "#/definitions/CARD_ACTION_USER_INPUT"}},
-        "request":    {"type": "object"}
+        "id":         {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$",
+          "description": "Unique ID of the action"
+        },
+        "action_key": {"type": "string", "description": "An arbitrary string used by the client to distinguish this action from other actions that may be sent"},
+        "label":      {"type": "string", "description": "A human-readable description of the action to be shown in the card"},
+        "url":        {"$ref": "#/definitions/link"},
+        "type":       {"$ref": "#/definitions/httpMethods", "description": "The HTTP method to use for submitting the action request"},
+        "user_input": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/cardActionUserInput"},
+          "description": "Allows the user to enter data to be submitted in this action"
+        },
+        "request":    {"type": "object", "description": "Hard-coded fields to be sent with the action request"}
       },
       "additionalProperties": false
     },
 
-    "CARD_ACTION_USER_INPUT": {
+    "cardActionUserInput": {
       "type": "object",
       "properties": {
-        "id":         {"type": "string"},
-        "label":      {"type": "string"},
-        "format":     {"type": "string"},
-        "options":    {"type": "object"},
-        "min_length": {"type": "integer", "minimum": 0},
-        "max_length": {"type": "integer", "minimum": 0}
+        "id":         {"type": "string", "description": "The field's ID, which will be used as the key when this field is submitted"},
+        "label":      {"type": "string", "description": "The field's label, which will be displayed to the user to describe the expected content of the field"},
+        "format":     {"type": "string", "description": "The type of the user input"},
+        "options":    {"type": "object", "description": "Options to present when format is select."},
+        "min_length": {"type": "integer", "minimum": 0, "description": "The minimum length of the field"},
+        "max_length": {"type": "integer", "minimum": 0, "description": "The maximum length of the field"}
       },
       "required": ["id", "label"],
       "additionalProperties": false
     },
 
-    "HTTP_METHODS": {
+    "httpMethods": {
       "type": "string",
       "enum": ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT", "TRACE"]
     }
 
   }
 }
-
