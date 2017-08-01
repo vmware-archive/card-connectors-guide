@@ -1,1 +1,3 @@
 samples/node/.idea
+*.log
+samples/node/node_modules
