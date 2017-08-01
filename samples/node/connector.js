@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const commandLineArgs = require('command-line-args');
 const weather = require('./routes/weather');
+const discovery = require('./routes/discovery');
 
 const optionDefinitions = [
     {name: 'port', type: Number, defaultValue: 3000}
@@ -20,7 +21,8 @@ const options = commandLineArgs(optionDefinitions);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
-app.use(function (req, res, next) {
+app.set('trust proxy', true);
+app.use(['/cards/requests', '/reports'], function (req, res, next) {
     const authorization = req.header("authorization");
     if (authorization) {
         console.log(`Client passed "${authorization}". We should authenticate using a public key from VMware Identity Manager`);
@@ -29,6 +31,9 @@ app.use(function (req, res, next) {
         res.status(401).send("Missing Authorization header");
     }
 });
+
+app.get('/', discovery.root);
+app.use(express.static('public'))
 
 // Request cards
 app.post('/cards/requests', weather.requestCards);

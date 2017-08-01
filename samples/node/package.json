@@ -11,6 +11,7 @@
     "express" : "4.15.x",
     "body-parser" : "1.17.x",
     "command-line-args" : "4.0.x",
-    "uuid" : "3.0.x"
+    "uuid" : "3.0.x",
+    "halberd": "0.2.x"
   }
 }
