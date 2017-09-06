@@ -87,7 +87,7 @@
         },
         "action_key": {"type": "string", "description": "An arbitrary string used by the client to distinguish this action from other actions that may be sent"},
         "label":      {"type": "string", "description": "A human-readable description of the action to be shown in the card"},
-        "url":        {"$ref": "#/definitions/link", "description": "See X-Routing-Prefix in Request Headers"},
+        "url":        {"$ref": "#/definitions/link", "description": "Link to the action. Optionally prefixed with X-Routing-Prefix. See Request Headers in wiki"},
         "type":       {"$ref": "#/definitions/httpMethods", "description": "The HTTP method to use for submitting the action request"},
         "user_input": {
           "type": "array",
