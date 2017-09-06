@@ -18,6 +18,7 @@ A client requests a weather card and the following request is forwarded to the c
 $ curl -H "Authorization: Bearer abcdef" \
 -H "Content-Type: application/json" \
 -H "Accept: application/json" \
+-H "X-Routing-Prefix: /connectors/weather/" \
 -X POST -d '{"tokens":{"zip":["30360"]}}' \
 https://weather-connector.acme.com/cards/requests
 ```
