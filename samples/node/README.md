@@ -24,8 +24,10 @@ $ docker run --rm -d -p 3000:3000 --name  weather-connector weather-connector --
 
 ## Testing the connector
 
-Request cards then report actual weather:
-
+Access [discovery](https://github.com/vmwaresamples/card-connectors-guide/wiki/Discovery), request cards, then report actual weather:
+```
+$ curl http://localhost:3000
+```
 ```
 $ curl -H "Authorization: Bearer abcdef" \
 -H "Content-Type: application/json" \
