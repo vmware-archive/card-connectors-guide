@@ -16,7 +16,13 @@ exports.requestCards = function(req, res) {
     // Treat missing zips and empty zips the same way
     const zips = req.body.tokens.zip ? req.body.tokens.zip : [];
 
-    res.json({cards: zips.map(toCard)});
+    // Real connectors will probably insist on receiving X-Routing-Prefix.
+    // We will be more lax here.
+    const routingPrefix = req.headers['x-routing-prefix'] ? req.headers['x-routing-prefix'] : '/';
+
+    res.json({cards: zips.map(function(zip){
+      return toCard(zip, routingPrefix);
+    })});
 };
 
 exports.reportWeather = function (req, res) {
@@ -24,13 +30,13 @@ exports.reportWeather = function (req, res) {
     res.status(200).end();
 };
 
-function toCard(zip) {
+function toCard(zip, routingPrefix) {
     return {
         id: uuidV4(),
         connector_id: "weather",
         name: "Weather connector",
         template: {
-            href: "/connectors/weather/templates/generic.hbs"
+            href: `${routingPrefix}templates/generic.hbs`
         },
         header: {
             title: `Weather forecast for ${zip}`
@@ -55,7 +61,7 @@ function toCard(zip) {
                 action_key: "REPORT_WEATHER",
                 label: "Report weather",
                 url: {
-                    href: "/connectors/weather/reports"
+                    href: `${routingPrefix}weather/reports`
                 },
                 type: "POST",
                 request: {

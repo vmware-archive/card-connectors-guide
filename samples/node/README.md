@@ -4,8 +4,8 @@ This is a sample connector intended to demonstrate the connector spec. It is a N
 
 A weather card is requested based on a ZIP code. The card includes (hard-coded) current weather conditions as well
 as an action for reporting the actual temperature for that ZIP code.
- 
-The listening port can be set using a command line argument. 
+
+The listening port can be set using a command line argument.
 
 
 ## Running the connector
@@ -31,6 +31,7 @@ $ curl http://localhost:3000
 ```
 $ curl -H "Authorization: Bearer abcdef" \
 -H "Content-Type: application/json" \
+-H "X-Routing-Prefix: /connectors/weather/" \
 -X POST -d '{"tokens":{"zip":["30360"]}}' \
 http://localhost:3000/cards/requests
 ```
