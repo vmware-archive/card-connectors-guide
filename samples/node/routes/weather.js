@@ -14,11 +14,11 @@ exports.requestCards = function(req, res) {
     }
 
     // Treat missing zips and empty zips the same way
-    const zips = req.body.tokens.zip ? req.body.tokens.zip : [];
+    const zips = req.body.tokens.zip || [];
 
     // Real connectors will probably insist on receiving X-Routing-Prefix.
     // We will be more lax here.
-    const routingPrefix = req.headers['x-routing-prefix'] ? req.headers['x-routing-prefix'] : '/';
+    const routingPrefix = req.headers['x-routing-prefix'] || '/';
 
     res.json({cards: zips.map(function(zip){
       return toCard(zip, routingPrefix);
@@ -57,8 +57,8 @@ function toCard(zip, routingPrefix) {
         },
         actions: [
             {
-                id: `report_weather_${zip}`,
-                action_key: "REPORT_WEATHER",
+                id: uuidV4(),
+                action_key: "USER_INPUT",
                 label: "Report weather",
                 url: {
                     href: `${routingPrefix}weather/reports`
