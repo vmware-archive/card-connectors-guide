@@ -33,8 +33,6 @@ exports.reportWeather = function (req, res) {
 function toCard(zip, routingPrefix) {
     return {
         id: uuidV4(),
-        connector_id: "weather",
-        name: "Weather connector",
         template: {
             href: `${routingPrefix}templates/generic.hbs`
         },
