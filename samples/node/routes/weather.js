@@ -58,6 +58,7 @@ function toCard(zip, routingPrefix) {
                 id: uuidV4(),
                 action_key: "USER_INPUT",
                 label: "Report weather",
+                completed_label: "Weather reported successfully",
                 url: {
                     href: `${routingPrefix}weather/reports`
                 },
