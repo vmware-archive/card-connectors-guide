@@ -60,7 +60,7 @@ function toCard(zip, routingPrefix) {
                 label: "Report weather",
                 completed_label: "Weather reported successfully",
                 url: {
-                    href: `${routingPrefix}weather/reports`
+                    href: `${routingPrefix}reports`
                 },
                 type: "POST",
                 request: {
