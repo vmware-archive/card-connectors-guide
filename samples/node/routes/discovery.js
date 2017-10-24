@@ -12,6 +12,7 @@ exports.root = function (req, res) {
     const base = `${protocol(req)}://${host(req)}`;
     resource.link('metadata', `${base}/discovery/metadata.json`);
     resource.link('cards', `${base}/cards/requests`);
+    resource.link('images', `${base}/images/connector.png`);
     res.setHeader('Content-Type', 'application/hal+json');
     res.send(resource.toJSON());
 }
