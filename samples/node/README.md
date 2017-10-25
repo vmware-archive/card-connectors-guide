@@ -11,7 +11,7 @@ The listening port can be set using a command line argument.
 ## Running the connector
 ```
 $ npm install
-$ npm run start --  --port=3000
+$ npm start --  --port=3000
 ```
 
 ## Using Docker
