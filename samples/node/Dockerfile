@@ -1,10 +1,11 @@
 FROM node:boron
 
-COPY package.json /
+WORKDIR /usr/src/app
+
+COPY package.json .
+
 RUN npm install
 
-COPY connector.js /
-COPY /routes /routes
-COPY /public/discovery /public/discovery
+COPY . .
 
-ENTRYPOINT [ "npm", "run", "start", "--", "--port=3000" ]
+ENTRYPOINT [ "npm", "start", "--", "--port=3000" ]
