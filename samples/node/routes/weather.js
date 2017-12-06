@@ -25,6 +25,10 @@ exports.requestCards = function(req, res) {
     })});
 };
 
+exports.testAuth = function(req, res) {
+  res.status(200).send();
+}
+
 exports.reportWeather = function (req, res) {
     console.log(`Reporting temperature of ${req.body.temperature} for ${req.body.zip}`);
     res.status(200).end();

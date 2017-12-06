@@ -38,6 +38,9 @@ app.use(express.static('public'))
 // Request cards
 app.post('/cards/requests', weather.requestCards);
 
+// Test authentication
+app.get('/test-auth', weather.testAuth);
+
 // Perform an action. Note that "/connectors/weather/" is required by Hero to route here, but "/reports"
 // is all we see here.
 app.post('/reports', weather.reportWeather);
@@ -45,4 +48,3 @@ app.post('/reports', weather.reportWeather);
 app.listen(options.port, function () {
     console.log(`Connector listening on port ${options.port}.`);
 });
-
