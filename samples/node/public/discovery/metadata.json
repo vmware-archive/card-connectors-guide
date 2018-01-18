@@ -1,5 +1,5 @@
 {
-  "authentication_header": "X-Weather-Authorization",
+  "authorization_header": "X-Weather-Authorization",
   "fields": {
     "zip": {
       "regex": "([0-9]{5})(?:[- ][0-9]{4})?"
