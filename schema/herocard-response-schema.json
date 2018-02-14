@@ -19,7 +19,6 @@
         },
         "creation_date": {"type": "string", "format": "date-time", "description": "When the card was created. In ISO 8601 format"},
         "expiration_date" :{"type": "string", "format": "date-time", "description": "When the card will expire. In ISO 8601 format"},
-        "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of an action"},
         "template":     {"$ref": "#/definitions/link", "description": "Link to a Handlebars template for rendering the card"},
         "header":       {"$ref": "#/definitions/cardHeader", "description": "The card's header"},
         "body":         {"$ref": "#/definitions/cardBody", "description": "The card's body"},
@@ -94,7 +93,9 @@
           "items": {"$ref": "#/definitions/cardActionUserInput"},
           "description": "Allows the user to enter data to be submitted in this action"
         },
-        "request":    {"type": "object", "description": "Hard-coded fields to be sent with the action request"}
+        "request":    {"type": "object", "description": "Hard-coded fields to be sent with the action request"},
+        "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of this action"},
+
       },
       "additionalProperties": false
     },
