@@ -40,7 +40,7 @@
       "type": "object",
       "properties": {
         "title":    {"type": "string"},
-        "subtitle": {"type": "string"}
+        "subtitle": {"type": "array", "items": {"type": "string"}}
       },
       "additionalProperties": false
     },
