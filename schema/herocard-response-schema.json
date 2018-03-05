@@ -96,6 +96,7 @@
         "request":    {"type": "object", "description": "Hard-coded fields to be sent with the action request"},
         "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of this action"}
       },
+      "required": ["id", "action_key", "label", "completed_label", "url", "type"],
       "additionalProperties": false
     },
 
