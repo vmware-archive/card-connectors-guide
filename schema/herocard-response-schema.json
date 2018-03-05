@@ -18,6 +18,7 @@
           "pattern": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$"
         },
         "importance":    {"type": "integer", "description": "The importance of the card. An importance of 0 is the highest importance and larger numbers indicate lower importance"},
+        "image":         {"$ref": "#/definitions/link", "description": "Link to an image to use for the card's icon"},
         "creation_date": {"type": "string", "format": "date-time", "description": "When the card was created. In ISO 8601 format"},
         "expiration_date" :{"type": "string", "format": "date-time", "description": "When the card will expire. In ISO 8601 format"},
         "template":     {"$ref": "#/definitions/link", "description": "Link to a Handlebars template for rendering the card"},
