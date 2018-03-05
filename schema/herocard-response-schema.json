@@ -95,6 +95,7 @@
           "description": "Allows the user to enter data to be submitted in this action"
         },
         "request":    {"type": "object", "description": "Hard-coded fields to be sent with the action request"},
+        "allow_repeated" : {"type": "boolean", "description": "Whether or not the action can be clicked again after successfully completed"},
         "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of this action"}
       },
       "required": ["id", "action_key", "label", "completed_label", "url", "type"],
