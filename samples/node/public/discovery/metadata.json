@@ -2,6 +2,7 @@
   "authorization_header": "X-Weather-Authorization",
   "fields": {
     "zip": {
+      "capture_group": 1,
       "regex": "([0-9]{5})(?:[- ][0-9]{4})?"
     }
   }
