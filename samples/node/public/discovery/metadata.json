@@ -1,5 +1,6 @@
 {
   "authorization_header": "X-Weather-Authorization",
+  "object_type": "card",
   "fields": {
     "zip": {
       "capture_group": 1,

@@ -20,7 +20,7 @@ exports.requestCards = function(req, res) {
     // We will be more lax here.
     const routingPrefix = req.headers['x-routing-prefix'] || '/';
 
-    res.json({cards: zips.map(function(zip){
+    res.json({objects: zips.map(function(zip){
       return toCard(zip, routingPrefix);
     })});
 };
@@ -29,8 +29,11 @@ exports.testAuth = function(req, res) {
   res.status(200).send();
 }
 
+let lastReported = {};
+
 exports.reportWeather = function (req, res) {
     console.log(`Reporting temperature of ${req.body.temperature} for ${req.body.zip}`);
+    lastReported[req.body.zip] = req.body.temperature;
     res.status(200).end();
 };
 
@@ -49,8 +52,9 @@ function toCard(zip, routingPrefix) {
                 {
                     type: "GENERAL",
                     title: "Temperature",
-                    description: "75"
-                }, {
+                    description: `${lastReported[zip] || '75'}`
+                },
+                {
                     type: "GENERAL",
                     title: "Conditions",
                     description: "Sunny"
