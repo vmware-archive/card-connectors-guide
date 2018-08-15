@@ -1,8 +1,8 @@
-# Card Connectors Guide
+# Mobile Flows Connectors Guide
 
 ## Overview
 
-This serves as a guide for writing connectors for the Hero Card service. A connector is an adapter with two responsibilities:
+This serves as a guide for writing connectors for the Mobile Flows. A connector is an adapter with two responsibilities:
 
 * Based on card requests, render cards. This would typically be achieved by accessing an external backend system. The card is a JSON structure that allows a client to display something meaningful to the user. The card also includes references to actions the user can take, relevant to the context of the card.
 * Provide endpoints for all actions advertised in the card.
