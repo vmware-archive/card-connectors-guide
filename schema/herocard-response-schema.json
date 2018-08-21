@@ -24,7 +24,8 @@
         "template":     {"$ref": "#/definitions/link", "description": "Link to a Handlebars template for rendering the card"},
         "header":       {"$ref": "#/definitions/cardHeader", "description": "The card's header"},
         "body":         {"$ref": "#/definitions/cardBody", "description": "The card's body"},
-        "actions":      {"type": "array", "items": {"$ref": "#/definitions/cardAction"}}
+        "actions":      {"type": "array", "items": {"$ref": "#/definitions/cardAction"}},
+        "tags":         {"type": "array", "items": {"type": "string"}, "description": "Arbitrary tags applied to the card"}
       },
       "additionalProperties": false
     },
