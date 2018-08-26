@@ -28,14 +28,15 @@ app.use(['/cards/requests', '/reports'], function (req, res, next) {
     if (authorization) {
         console.log(`Client passed "${authorization}". We should authenticate using a public key from VMware Identity Manager`);
     } else {
-        res.status(401).send("Missing Authorization header");
-        return
+        return res.status(401).send("Missing Authorization header");
     }
     if (xAuthorization) {
         console.log(`Client passed "${xAuthorization}". Connector will use this to fetch info. form the backend Weather system.`);
         next();
     } else {
-        res.status(400).send("Missing X-Connector-Authorization header");
+        const r = res.status(400);
+        r.setHeader('X-Backend-Status', 401);
+        r.send("Missing X-Connector-Authorization header");
     }
 });
 

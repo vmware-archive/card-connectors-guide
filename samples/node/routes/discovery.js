@@ -5,16 +5,24 @@
 
 "use strict";
 
-const fs = require('fs');
-
 exports.root = function (req, res) {
     const base = `${protocol(req)}://${host(req)}`;
-    fs.readFile('./discovery/metadata.json', 'utf8', function (err, contents) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(
-            contents.replace(new RegExp('@@_CONNECTOR_HOST_@@', 'g'), base)
-        );
-    });
+    const body = {
+        image: {href: `${base}/images/connector.png`},
+        test_auth: {href: `${base}/test-auth`},
+        object_types: [
+            {
+                name: "card",
+                doc: {href: "https://github.com/vmwaresamples/card-connectors-guide/wiki/Card-Responses"},
+                fields: {
+                    zip: {capture_group: 1, regex: "([0-9]{5})(?:[- ][0-9]{4})?"}
+                },
+                endpoint: {href: `${base}/cards/requests`}
+            }
+        ]
+    };
+    res.setHeader('Content-Type', 'application/json');
+    res.send(body);
 };
 
 function protocol(req) {
