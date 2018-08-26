@@ -5,18 +5,17 @@
 
 "use strict";
 
-const hal = require('halberd');
+const fs = require('fs');
 
 exports.root = function (req, res) {
-    const resource = new hal.Resource();
     const base = `${protocol(req)}://${host(req)}`;
-    resource.link('metadata', `${base}/discovery/metadata.json`);
-    resource.link('objects', `${base}/cards/requests`);
-    resource.link('image', `${base}/images/connector.png`);
-    resource.link('test_auth', `${base}/test-auth`);
-    res.setHeader('Content-Type', 'application/hal+json');
-    res.send(resource.toJSON());
-}
+    fs.readFile('./discovery/metadata.json', 'utf8', function (err, contents) {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(
+            contents.replace(new RegExp('@@_CONNECTOR_HOST_@@', 'g'), base)
+        );
+    });
+};
 
 function protocol(req) {
     // Express looks for X-Forwarded-Proto
