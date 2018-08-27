@@ -24,16 +24,24 @@ app.use(bodyParser.urlencoded());
 app.set('trust proxy', true);
 app.use(['/cards/requests', '/reports'], function (req, res, next) {
     const authorization = req.header("authorization");
+    const xAuthorization = req.header("X-Connector-Authorization");
     if (authorization) {
         console.log(`Client passed "${authorization}". We should authenticate using a public key from VMware Identity Manager`);
+    } else {
+        return res.status(401).send("Missing Authorization header");
+    }
+    if (xAuthorization) {
+        console.log(`Client passed "${xAuthorization}". Connector will use this to fetch info. form the backend Weather system.`);
         next();
     } else {
-        res.status(401).send("Missing Authorization header");
+        const r = res.status(400);
+        r.setHeader('X-Backend-Status', 401);
+        r.send("Missing X-Connector-Authorization header");
     }
 });
 
 app.get('/', discovery.root);
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 // Request cards
 app.post('/cards/requests', weather.requestCards);
