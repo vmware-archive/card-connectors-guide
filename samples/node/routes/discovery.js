@@ -21,8 +21,7 @@ exports.root = function (req, res) {
             }
         ]
     };
-    res.setHeader('Content-Type', 'application/json');
-    res.send(body);
+    res.json(body);
 };
 
 function protocol(req) {
