@@ -53,6 +53,9 @@ app.get('/test-auth', weather.testAuth);
 // is all we see here.
 app.post('/reports', weather.reportWeather);
 
+// Connector-level action to Clear all reported data
+app.post('/clear', weather.clearData);
+
 app.listen(options.port, function () {
     console.log(`Connector listening on port ${options.port}.`);
 });

@@ -10,6 +10,18 @@ exports.root = function (req, res) {
     const body = {
         image: {href: `${base}/images/connector.png`},
         test_auth: {href: `${base}/test-auth`},
+        actions: [
+            {
+                url: {
+                    href: `${base}/clear`
+                },
+                user_input: [],
+                request: {},
+                label: 'Clear Reported Data',
+                type: 'POST',
+                action_key: 'DIRECT'
+            }
+        ],
         object_types: [
             {
                 name: "card",

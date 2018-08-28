@@ -37,6 +37,12 @@ exports.reportWeather = function (req, res) {
     res.status(200).end();
 };
 
+exports.clearData = function (req, res) {
+    console.log('Clearing all reported data');
+    lastReported = {};
+    res.status(200).end();
+}
+
 function toCard(zip, routingPrefix) {
     return {
         id: uuidV4(),
