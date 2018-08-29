@@ -2,8 +2,29 @@
   "$schema": "http://json-schema.org/schema#",
   "title": "Connector-level action schema",
 
-  "type": "array",
-  "items": {"$ref": "#/definitions/connectorAction"},
+  "type": "object",
+  "properties": {
+    "action_key": {"type": "string", "description": "An arbitrary string used by the client to distinguish this action from other actions that may be sent"},
+    "label":      {"type": "string", "description": "A human-readable description of the action"},
+    "url":        {"$ref": "#/definitions/link", "description": "Link to the action"},
+    "type":       {"$ref": "#/definitions/httpMethods", "description": "The HTTP method to use for submitting the action request"},
+    "user_input": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/connectorActionUserInput"},
+      "description": "Allows the user to enter data to be submitted in this action"
+    },
+    "request": {
+      "type": "object",
+      "description": "Fields to be sent with the action request",
+      "properties": {
+        "env": {
+          "type": "string",
+          "description": "Environment variable to send in the request.  See Discovery in wiki"
+        }
+      }
+    }
+  },
+  "required": ["action_key", "label", "url", "type"],
   "additionalProperties": false,
 
   "definitions": {
@@ -14,33 +35,6 @@
         "href": {"type": "string", "format": "uri"}
       },
       "required": ["href"],
-      "additionalProperties": false
-    },
-
-    "connectorAction": {
-      "type": "object",
-      "properties": {
-        "action_key": {"type": "string", "description": "An arbitrary string used by the client to distinguish this action from other actions that may be sent"},
-        "label":      {"type": "string", "description": "A human-readable description of the action"},
-        "url":        {"$ref": "#/definitions/link", "description": "Link to the action"},
-        "type":       {"$ref": "#/definitions/httpMethods", "description": "The HTTP method to use for submitting the action request"},
-        "user_input": {
-          "type": "array",
-          "items": {"$ref": "#/definitions/connectorActionUserInput"},
-          "description": "Allows the user to enter data to be submitted in this action"
-        },
-        "request": {
-          "type": "object",
-          "description": "Fields to be sent with the action request",
-          "properties": {
-            "env": {
-              "type": "string",
-              "description": "Environment variable to send in the request.  See Discovery in wiki"
-            }
-          }
-        }
-      },
-      "required": ["action_key", "label", "url", "type"],
       "additionalProperties": false
     },
 
