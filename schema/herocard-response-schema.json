@@ -33,7 +33,7 @@
     "link": {
       "type": "object",
       "properties": {
-        "href": {"type": "uri"}
+        "href": {"type": "string", "format": "uri"}
       },
       "required": ["href"],
       "additionalProperties": false
