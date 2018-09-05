@@ -22,16 +22,15 @@ exports.root = function (req, res) {
                 action_key: 'DIRECT'
             }
         ],
-        object_types: [
-            {
-                name: "card",
+        object_types: {
+            card: {
                 doc: {href: "https://github.com/vmwaresamples/card-connectors-guide/wiki/Card-Responses"},
                 fields: {
                     zip: {capture_group: 1, regex: "([0-9]{5})(?:[- ][0-9]{4})?"}
                 },
                 endpoint: {href: `${base}/cards/requests`}
             }
-        ]
+        }
     };
     res.json(body);
 };
