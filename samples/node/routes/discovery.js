@@ -10,8 +10,8 @@ exports.root = function (req, res) {
     const body = {
         image: {href: `${base}/images/connector.png`},
         test_auth: {href: `${base}/test-auth`},
-        actions: [
-            {
+        actions: {
+            clear: {
                 url: {
                     href: `${base}/clear`
                 },
@@ -21,7 +21,7 @@ exports.root = function (req, res) {
                 type: 'POST',
                 action_key: 'DIRECT'
             }
-        ],
+        },
         object_types: {
             card: {
                 doc: {href: "https://github.com/vmwaresamples/card-connectors-guide/wiki/Card-Responses"},

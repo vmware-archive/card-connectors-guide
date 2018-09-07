@@ -31,7 +31,7 @@ app.use(['/cards/requests', '/reports'], function (req, res, next) {
         return res.status(401).send("Missing Authorization header");
     }
     if (xAuthorization) {
-        console.log(`Client passed "${xAuthorization}". Connector will use this to fetch info. form the backend Weather system.`);
+        console.log(`Client passed "${xAuthorization}". Connector will use this to fetch info from the backend Weather system.`);
         next();
     } else {
         const r = res.status(400);
