@@ -6,7 +6,6 @@
 "use strict";
 
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
 const commandLineArgs = require('command-line-args');
 const weather = require('./routes/weather');
@@ -18,8 +17,8 @@ const optionDefinitions = [
 
 const options = commandLineArgs(optionDefinitions);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.set('trust proxy', true);
 app.use(['/cards/requests', '/reports'], function (req, res, next) {
