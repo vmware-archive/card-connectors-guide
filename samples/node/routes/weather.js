@@ -6,6 +6,7 @@
 "use strict";
 
 const uuidV4 = require('uuid/v4');
+const sha1 = require('sha1');
 
 exports.requestCards = function(req, res) {
     if (!req.body.tokens) {
@@ -52,6 +53,7 @@ function toCard(zip, routingPrefix) {
         header: {
             title: `Weather forecast for ${zip}`
         },
+        hash: sha1(zip),
         body: {
             description: "The weather is rather nice at the moment",
             fields: [
