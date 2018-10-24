@@ -25,7 +25,7 @@ app.use(['/cards/requests', '/reports'], function (req, res, next) {
     const authorization = req.header("authorization");
     const xAuthorization = req.header("X-Connector-Authorization");
     if (authorization) {
-        console.log(`Client passed "${authorization}". We should authenticate using a public key from VMware Identity Manager`);
+        console.log(`Client passed "${authorization}". We should authenticate using the public key from the Mobile Flows Server`);
     } else {
         return res.status(401).send("Missing Authorization header");
     }
