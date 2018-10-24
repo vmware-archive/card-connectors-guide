@@ -6,7 +6,6 @@
   "properties": {
     "objects": {"type": "array", "items": {"$ref": "#/definitions/card"}}
   },
-  "additionalProperties": false,
 
 
   "definitions": {
@@ -27,8 +26,7 @@
         "hash":         {"type": "string", "description": "A hash to help the Mobile Flows determine if this card is new or has been seen before"},
         "actions":      {"type": "array", "items": {"$ref": "#/definitions/cardAction"}},
         "tags":         {"type": "array", "items": {"type": "string"}, "description": "Arbitrary tags applied to the card"}
-      },
-      "additionalProperties": false
+      }
     },
 
     "link": {
@@ -36,8 +34,7 @@
       "properties": {
         "href": {"type": "string", "format": "uri"}
       },
-      "required": ["href"],
-      "additionalProperties": false
+      "required": ["href"]
     },
 
     "cardHeader": {
@@ -45,8 +42,7 @@
       "properties": {
         "title":    {"type": "string"},
         "subtitle": {"type": "array", "items": {"type": "string"}}
-      },
-      "additionalProperties": false
+      }
     },
 
     "cardBody": {
@@ -60,8 +56,7 @@
           "items": {"$ref": "#/definitions/cardBodyField"},
           "description": "The fields of the body, if any. Fields are rendered differently according to their type attribute"
         }
-      },
-      "additionalProperties": false
+      }
     },
 
     "cardBodyField": {
@@ -75,8 +70,7 @@
           "items": {"type": "object"},
           "description": "The content of this field, which can consist of arbitrary JSON objects. The client will use the field's type attribute to determine how to parse the content."
         }
-      },
-      "additionalProperties": false
+      }
     },
 
     "cardAction": {
@@ -103,8 +97,7 @@
         "allow_repeated" : {"type": "boolean", "description": "Whether or not the action can be clicked again after successfully completed"},
         "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of this action"}
       },
-      "required": ["id", "action_key", "label", "completed_label", "url", "type"],
-      "additionalProperties": false
+      "required": ["id", "action_key", "label", "completed_label", "url", "type"]
     },
 
     "cardActionUserInput": {
@@ -117,8 +110,7 @@
         "min_length": {"type": "integer", "minimum": 0, "description": "The minimum length of the field"},
         "max_length": {"type": "integer", "minimum": 0, "description": "The maximum length of the field"}
       },
-      "required": ["id", "label"],
-      "additionalProperties": false
+      "required": ["id", "label"]
     },
 
     "httpMethods": {

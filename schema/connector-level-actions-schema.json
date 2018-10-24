@@ -25,7 +25,6 @@
     }
   },
   "required": ["action_key", "label", "url", "type"],
-  "additionalProperties": false,
 
   "definitions": {
 
@@ -34,8 +33,7 @@
       "properties": {
         "href": {"type": "string", "format": "uri"}
       },
-      "required": ["href"],
-      "additionalProperties": false
+      "required": ["href"]
     },
 
     "connectorActionUserInput": {
@@ -48,8 +46,7 @@
         "min_length": {"type": "integer", "minimum": 0, "description": "The minimum length of the field"},
         "max_length": {"type": "integer", "minimum": 0, "description": "The maximum length of the field"}
       },
-      "required": ["id", "label"],
-      "additionalProperties": false
+      "required": ["id", "label"]
     },
 
     "httpMethods": {
