@@ -4,7 +4,7 @@
 
 This serves as a guide for writing connectors for the Mobile Flows. A connector is an adapter with two responsibilities:
 
-* Based on object requests, render objects. This would typically be achieved by accessing an external backend system. The object is a JSON structure that allows a client to display something meaningful to the user. The object also includes references to actions the user can take, relevant to the context of the object. Note that the Weather connector in the [samples section](samples/node) uses Card, a type of oject as defined here : https://github.com/vmwaresamples/card-connectors-guide/wiki/Card-Responses
+* Based on object requests, render objects. This would typically be achieved by accessing an external backend system. The object is a JSON structure that allows a client to display something meaningful to the user. The object also includes references to actions the user can take, relevant to the context of the object. Note that the Weather connector in the [samples section](samples/node) uses Card, a type of oject as defined here : https://github.com/vmware-samples/card-connectors-guide/wiki/Card-Responses
 * Provide endpoints for all actions advertised in the object.
 
 All communication with a connector is over HTTPS. A connector can be written in any language that allows the developer to create HTTP endpoints. 
@@ -35,4 +35,4 @@ A stubbed service based on the above can be found in the [samples section](sampl
 
 ## Further reading
 
-For a detailed specification, please see the [wiki](https://github.com/vmwaresamples/card-connectors-guide/wiki).
+For a detailed specification, please see the [wiki](https://github.com/vmware-samples/card-connectors-guide/wiki).
