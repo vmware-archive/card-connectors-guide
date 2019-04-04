@@ -24,7 +24,7 @@ exports.root = function (req, res) {
         },
         object_types: {
             card: {
-                doc: {href: "https://github.com/vmwaresamples/card-connectors-guide/wiki/Card-Responses"},
+                doc: {href: "https://github.com/vmware-samples/card-connectors-guide/wiki/Card-Responses"},
                 fields: {
                     zip: {capture_group: 1, regex: "([0-9]{5})(?:[- ][0-9]{4})?"}
                 },
