@@ -7,6 +7,10 @@
       "type": "string",
       "description": "The ID of the connector"
     },
+    "config": {
+      "type": "object",
+      "description": "String key value pairs that are the config stored for a tenant connector in the Mobile Flows DB"
+    },
     "tokens": {"type": "object",
                "description": "Tokens used by connector to render cards",
                "patternProperties": {
