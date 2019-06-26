@@ -10,6 +10,21 @@ exports.root = function (req, res) {
     const body = {
         image: {href: `${base}/images/connector.png`},
         test_auth: {href: `${base}/test-auth`},
+        config: {
+            foo: {
+                default: 'bar',
+                type: 'STRING',
+                description: {
+                    'en-US': 'This ...',
+                    'es-ES': 'Este ...'
+                },
+                validators: [
+                    {type: 'required'},
+                    {type: 'regex', value: '^\\w+$'},
+                    {type: 'max_length', value: '10'}
+                ]
+            }
+        },
         actions: {
             clear: {
                 url: {

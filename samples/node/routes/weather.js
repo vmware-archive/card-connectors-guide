@@ -9,6 +9,8 @@ const uuidV4 = require('uuid/v4');
 const sha1 = require('sha1');
 
 exports.requestCards = function(req, res) {
+    console.log('cards called: ', req.body);
+
     if (!req.body.tokens) {
         res.status(400).send("Missing tokens field");
         return;
