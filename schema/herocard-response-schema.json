@@ -24,7 +24,7 @@
         "header":       {"$ref": "#/definitions/cardHeader", "description": "The card's header"},
         "body":         {"$ref": "#/definitions/cardBody", "description": "The card's body"},
         "hash":         {"type": "string", "description": "A hash to help Mobile Flows determine if this card is new or has been seen before"},
-        "backend_id":   {"type": "string", "description": "An optional ID to help correlate card results from one request to the next.  A card with the same backend_id as a previously returned card should represent card was built interacting with the same backend data."},
+        "backend_id":   {"type": "string", "description": "An optional ID to help correlate card results from one request to the next.  A card with the same backend_id as a previously returned card should represent that each card was built interacting with the same backend data."},
         "actions":      {"type": "array", "items": {"$ref": "#/definitions/cardAction"}, "description": "Available actions to display on the card, listed in order of importance (most important first)"},
         "tags":         {"type": "array", "items": {"type": "string"}, "description": "Arbitrary tags applied to the card"}
       }
