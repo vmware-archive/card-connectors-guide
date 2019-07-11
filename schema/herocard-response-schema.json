@@ -64,12 +64,34 @@
       "properties": {
         "type":        {"type": "string"},
         "title":       {"type": "string"},
+        "subtitle":    {"type": "string"},
         "description": {"type": "string"},
         "content":     {
           "type": "array",
           "items": {"type": "object"},
           "description": "The content of this field, which can consist of arbitrary JSON objects. The client will use the field's type attribute to determine how to parse the content."
+        },
+        "items": {
+          "type": "array",
+          "fieldItems": {"$ref": "#/definitions/cardBodyFieldItem"},
+          "description": "The fields of the card body field items. Used by the hub client to display different sections"
         }
+      }
+    },
+
+    "cardBodyFieldItem": {
+      "type": "object",
+      "properties": {
+        "type":             {"type": "string", "description": "Description of the body. This would typically be rendered as plain body text near the top of the card"},
+        "title":            {"type": "string", "description": "Title of the card body field item"},
+        "description":      {"type": "string", "description": "Description of the card body field item"},
+        "attachment_name":  {"type": "string", "description": "Name of the attachment for an expense report item"},
+        "attachment_url":   {"type": "string", "description": "URL of the attachment for an expense report item"},
+        "attachment_body":  {"type": "array", "items": {"type": "object"}, "description": "The raw content of the attachment for an expense report item"},
+        "content_type":     {"type": "string", "description": "The content type of attachment like application/pdf or application/png"},
+        "content_length":   {"type": "integer", "description": "The content length of the attachment for an expense report item"},
+        "action_url":       {"type": "string", "description": "Action URL to fetch the attachment URL of an expense report item"},
+        "action_type":      {"type": "string", "description": "Http method to retrieve action_url"}
       }
     },
 
