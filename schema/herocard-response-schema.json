@@ -74,7 +74,7 @@
         },
         "items": {
           "type": "array",
-          "fieldItems": {"$ref": "#/definitions/cardBodyFieldItem"},
+          "items": {"$ref": "#/definitions/cardBodyFieldItem"},
           "description": "The fields of the card body field items. Used by the hub client to display different sections"
         }
       }
