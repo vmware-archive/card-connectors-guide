@@ -92,7 +92,9 @@
         "content_type":     {"type": "string", "description": "The content type of attachment like application/pdf or application/png"},
         "content_length":   {"type": "integer", "description": "The content length of the attachment for an expense report item"},
         "action_url":       {"type": "string", "description": "Action URL to fetch the attachment URL of an expense report item"},
-        "action_type":      {"type": "string", "description": "Http method to retrieve action_url"}
+        "action_type":      {"type": "string", "description": "Http method to retrieve action_url"},
+        "created_at":       {"type": "string", "format": "date-time", "description":  "Indicates when the card body field item was created"},
+        "updated_at":       {"type": "string", "format": "date-time", "description":  "Indicates when the card body field item was updated"}
       }
     },
 
