@@ -2,7 +2,6 @@
   "$schema": "http://json-schema.org/schema#",
   "title": "Connector discovery schema",
   "type": "object",
-  "additionalProperties": false,
   "properties": {
     "image": {
       "$ref": "#/definitions/link"
@@ -41,7 +40,6 @@
     },
     "object_type": {
       "type": "object",
-      "additionalProperties": false,
       "properties": {
         "doc": {
           "$ref": "#/definitions/link"
@@ -68,18 +66,6 @@
     },
     "object_input_field": {
       "type": "object",
-      "anyOf": [
-        {
-          "$ref": "#/definitions/object_input_field_regex"
-        },
-        {
-          "$ref": "#/definitions/object_input_field_env"
-        }
-      ]
-    },
-    "object_input_field_regex": {
-      "type": "object",
-      "additionalProperties": false,
       "properties": {
         "regex": {
           "type": "string"
@@ -87,29 +73,20 @@
         "capture_group": {
           "type": "integer"
         },
-        "required": {
-          "type": "boolean"
-        }
-      },
-      "required": [
-        "regex",
-        "capture_group"
-      ]
-    },
-    "object_input_field_env": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
         "env": {
-          "$ref": "#/definitions/input_env_variables"
+          "type": "string"
         },
         "required": {
           "type": "boolean"
         }
       },
-      "required": [
-        "env"
-      ]
+      "dependencies": {
+        "regex": {
+          "required": [
+            "capture_group"
+          ]
+        }
+      }
     },
     "actions": {
       "type": "object",
@@ -119,7 +96,6 @@
     },
     "connector_level_action": {
       "type": "object",
-      "additionalProperties": false,
       "properties": {
         "url": {
           "$ref": "#/definitions/link"
@@ -132,7 +108,14 @@
         },
         "request": {
           "type": "object",
-          "additionalProperties": {"$ref": "#/definitions/connector_action_request_params"}
+          "additionalProperties": {
+            "type": ["boolean", "string", "number", "object"],
+            "properties": {
+              "env": {
+                "type": "string"
+              }
+            }
+          }
         },
         "label": {
           "type": "string"
@@ -141,7 +124,7 @@
           "$ref": "#/definitions/http_methods"
         },
         "action_key": {
-          "$ref": "#/definitions/connector_action_keys"
+          "type": "string"
         },
         "metadata": {
           "type": "object"
@@ -159,13 +142,6 @@
           "user_input"
         ]
       },
-      "else": {
-        "not": {
-          "required": [
-            "user_input"
-          ]
-        }
-      },
       "required": [
         "url",
         "type",
@@ -175,7 +151,6 @@
     },
     "connector_action_user_input": {
       "type": "object",
-      "additionalProperties": false,
       "properties": {
         "id": {
           "type": "string"
@@ -184,7 +159,7 @@
           "type": "string"
         },
         "format": {
-          "$ref": "#/definitions/connector_action_user_input_formats"
+          "type": "string"
         },
         "select": {
           "type": "object"
@@ -216,16 +191,6 @@
         "format"
       ]
     },
-    "connector_action_request_params": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "env": {
-          "$ref": "#/definitions/input_env_variables"
-        }
-      },
-      "required": ["env"]
-    },
     "configs": {
       "type": "object",
       "additionalProperties": {
@@ -234,7 +199,6 @@
     },
     "config": {
       "type": "object",
-      "additionalProperties": false,
       "properties": {
         "default": {
           "type": "string"
@@ -242,99 +206,41 @@
         "type": {
           "type": "string"
         },
+        "label": {
+          "type": "object"
+        },
         "description": {
-          "type": "object",
-          "additionalProperties": {
-            "not": {
-              "type": "object"
-            }
-          }
+          "type": "object"
         },
         "validators": {
           "type": "array",
-          "items": {"$ref": "#/definitions/config_validator"}
+          "items": {
+            "$ref": "#/definitions/config_validator"
+          }
         }
       },
-      "required": ["description"]
-    },
-    "config_validator": {
-      "anyOf": [
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "type": {
-              "const": "required"
-            },
-            "description": {
-              "type": "object",
-              "additionalProperties": {
-                "not": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "required": ["type"]
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "type": {
-              "const": "regex"
-            },
-            "value": {
-              "type": "string"
-            },
-            "description": {
-              "type": "object",
-              "additionalProperties": {
-                "not": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "required": ["type", "value"]
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "type": {
-              "const": "max_length"
-            },
-            "value": {
-              "type": "integer"
-            },
-            "description": {
-              "type": "object",
-              "additionalProperties": {
-                "not": {
-                  "type": "object"
-                }
-              }
-            }
-          },
-          "required": ["type", "value"]
-        }
+      "required": [
+        "type",
+        "label",
+        "description"
       ]
     },
-    "input_env_variables": {
-      "type": "string",
-      "enum": [
-        "USER_EMAIL",
-        "ENROLLMENT_IDENTIFIER",
-        "ENROLLMENT_USERNAME",
-        "ENROLLMENT_GROUP_IDENTIFIER",
-        "ENROLLMENT_DEVICE_UDID",
-        "DEVICE_IDENTIFIER",
-        "DEVICE_MODEL",
-        "DEVICE_NAME",
-        "DEVICE_SYSTEM_NAME",
-        "DEVICE_SYSTEM_VERSION",
-        "DEVICE_UI_IDIOM"
+    "config_validator": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "description": {
+          "type": "object"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "description"
       ]
     },
     "http_methods": {
@@ -348,22 +254,6 @@
         "POST",
         "PUT",
         "TRACE"
-      ]
-    },
-    "connector_action_keys": {
-      "type": "string",
-      "enum": [
-        "DIRECT",
-        "USER_INPUT",
-        "OPEN_IN"
-      ]
-    },
-    "connector_action_user_input_formats": {
-      "type": "string",
-      "enum": [
-        "textarea",
-        "select",
-        "email"
       ]
     }
   }
