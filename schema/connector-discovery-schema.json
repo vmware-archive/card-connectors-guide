@@ -4,19 +4,24 @@
   "type": "object",
   "properties": {
     "image": {
-      "$ref": "#/definitions/link"
+      "$ref": "#/definitions/link",
+      "description": "Link to a PNG image that represents connector."
     },
     "test_auth": {
-      "$ref": "#/definitions/link"
+      "$ref": "#/definitions/link",
+      "description": "Link to an endpoint that helps to test backend authorization."
     },
     "object_types": {
-      "$ref": "#/definitions/object_types"
+      "$ref": "#/definitions/object_types",
+      "description": "Object types that the connector supports."
     },
     "actions": {
-      "$ref": "#/definitions/actions"
+      "$ref": "#/definitions/actions",
+      "description": "Connector level (Global level) actions that the connector supports."
     },
     "config": {
-      "$ref": "#/definitions/configs"
+      "$ref": "#/definitions/configs",
+      "description": "Multi tenant connector config properties that admin will be prompted while configuring Mobile Flows."
     }
   },
   "definitions": {
@@ -35,29 +40,35 @@
     "object_types": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/object_type"
+        "$ref": "#/definitions/object_type",
+        "description": "Each additional property is an object type."
       }
     },
     "object_type": {
       "type": "object",
       "properties": {
         "doc": {
-          "$ref": "#/definitions/link"
+          "$ref": "#/definitions/link",
+          "description": "Link to the schema of the object type."
         },
         "fields": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/object_input_field"
+            "$ref": "#/definitions/object_input_field",
+            "description": "Each additional property describes an input field."
           }
         },
         "pollable": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "A hint for the client that polling for this object_type might produce objects containing new data."
         },
         "metadata": {
-          "type": "object"
+          "type": "object",
+          "description": "Free form key-value pairs. Can contain additional metadata about the object_type, if anything is required by client."
         },
         "endpoint": {
-          "$ref": "#/definitions/link"
+          "$ref": "#/definitions/link",
+          "description": "Link to an endpoint that produces this object_type."
         }
       },
       "required": [
@@ -68,16 +79,20 @@
       "type": "object",
       "properties": {
         "regex": {
-          "type": "string"
+          "type": "string",
+          "description": "Regular expression that can be used by client to capture valid inputs, from a text line or paragraph."
         },
         "capture_group": {
-          "type": "integer"
+          "type": "integer",
+          "description": "Which parentheses group of the regex captured text to be used."
         },
         "env": {
-          "type": "string"
+          "type": "string",
+          "description": "Environment variable to send in the request.  See Discovery in wiki."
         },
         "required": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Flag says if this input field is mandatory to produce the objects."
         }
       },
       "dependencies": {
@@ -91,17 +106,20 @@
     "actions": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/connector_level_action"
+        "$ref": "#/definitions/connector_level_action",
+        "description": "Each additional property is a connector level action."
       }
     },
     "connector_level_action": {
       "type": "object",
       "properties": {
         "url": {
-          "$ref": "#/definitions/link"
+          "$ref": "#/definitions/link",
+          "description": "Link to the action."
         },
         "user_input": {
           "type": "array",
+          "description": "Allows the user to enter data to be submitted in this action.",
           "items": {
             "$ref": "#/definitions/connector_action_user_input"
           }
@@ -118,16 +136,20 @@
           }
         },
         "label": {
-          "type": "string"
+          "type": "string",
+          "description": "A human-readable description of the action."
         },
         "type": {
-          "$ref": "#/definitions/http_methods"
+          "$ref": "#/definitions/http_methods",
+          "description": "The HTTP method to use for submitting the action request."
         },
         "action_key": {
-          "type": "string"
+          "type": "string",
+          "description": "A key by which client understand the way to submit the action. See Discovery in wiki"
         },
         "metadata": {
-          "type": "object"
+          "type": "object",
+          "description": "Free form key-value pairs. Can contain additional metadata about the action, if anything is required by client."
         }
       },
       "if": {
@@ -153,24 +175,30 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "string",
+          "description": "The field's ID, which will be used as the key when this field is submitted."
         },
         "label": {
-          "type": "string"
+          "type": "string",
+          "description": "The field's label, which will be displayed to the user to describe the expected content of the field."
         },
         "format": {
-          "type": "string"
+          "type": "string",
+          "description": "The format type of the user input."
         },
         "select": {
-          "type": "object"
+          "type": "object",
+          "description": "If the format is 'select', choices for selecting should also be specified."
         },
         "min_length": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "description": "The minimum length of the user entered text field."
         },
         "max_length": {
           "type": "integer",
-          "minimum": 0
+          "minimum": 0,
+          "description": "The maximum length of the user entered text field."
         }
       },
       "if": {
@@ -194,26 +222,32 @@
     "configs": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/config"
+        "$ref": "#/definitions/config",
+        "description": "Each additional property is a connector level configuration."
       }
     },
     "config": {
       "type": "object",
       "properties": {
         "default": {
-          "type": "string"
+          "type": "string",
+          "description": "A default value in string for the configuration."
         },
         "type": {
-          "type": "string"
+          "type": "string",
+          "description": "Type of the value expected."
         },
         "label": {
-          "type": "object"
+          "type": "object",
+          "description": "Localised short label for the config field, that will be displayed in the admin dashboard."
         },
         "description": {
-          "type": "object"
+          "type": "object",
+          "description": "Localised description for the config field."
         },
         "validators": {
           "type": "array",
+          "description": "Optional array of validators. Admin is allowed to enter a value that validates against each of these.",
           "items": {
             "$ref": "#/definitions/config_validator"
           }
@@ -229,13 +263,16 @@
       "type": "object",
       "properties": {
         "type": {
-          "type": "string"
+          "type": "string",
+          "description": "Config validator type. See wiki for supported validator types."
         },
         "description": {
-          "type": "object"
+          "type": "object",
+          "description": "Localised description for the validator."
         },
         "value": {
-          "type": "string"
+          "type": "string",
+          "description": "A value that can be associated with some of the validator types. See Wiki for examples."
         }
       },
       "required": [
