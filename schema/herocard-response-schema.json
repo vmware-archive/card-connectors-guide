@@ -42,9 +42,31 @@
       "type": "object",
       "properties": {
         "title":    {"type": "string"},
-        "subtitle": {"type": "array", "items": {"type": "string"}}
+        "subtitle": {"type": "array", "items": {"type": "string"}},
+        "links": {"$ref" : "#/definitions/cardHeaderLinks", "description": "An optional property to link card title and sub-title(s) to the backend application"}
       }
     },
+
+    "cardHeaderLinks": {
+      "type": "object",
+      "properties": {
+          "title": {
+            "description": "Link to backend application title",
+            "type": "string", 
+            "format": "uri"
+          },
+          "subtitle": {
+            "description": "Link(s) to backend application sub-title(s). Number of links corresponds to the number of sub-titles and in the same order. Empty links can be represented with null",
+            "type": "array",
+            "items": {
+                "anyOf": [
+                  {"type": "string", "format": "uri"},
+                  {"type": "null"}
+                ]
+            }
+          }
+      }
+   },
 
     "cardBody": {
       "type": "object",
