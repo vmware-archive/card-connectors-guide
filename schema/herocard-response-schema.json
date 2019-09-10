@@ -44,7 +44,7 @@
         "title":    {"type": "string"},
         "subtitle": {"type": "array", "items": {"type": "string"}},
         "links": {"$ref" : "#/definitions/cardHeaderLinks", "description": "An optional property to link card title and sub-title(s) to the backend application"}
-      },
+      }
     },
 
     "cardHeaderLinks": {
@@ -60,7 +60,7 @@
             "type": "array",
             "items": {
                 "anyOf": [
-                  { "type": "string", "format": "uri"},
+                  {"type": "string", "format": "uri"},
                   {"type": "null"}
                 ]
             }
