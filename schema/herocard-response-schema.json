@@ -83,17 +83,17 @@
     "cardBodyFieldItem": {
       "type": "object",
       "properties": {
-        "type":             {"type": "string", "description": "The type of card body field item"},
-        "title":            {"type": "string", "description": "Title of the card body field item"},
-        "description":      {"type": "string", "description": "Description of the card body field item"},
-        "attachment_name":  {"type": "string", "description": "Name of the attachment"},
-        "attachment_url":   {"type": "string", "description": "Deep link URL of the attachment in the vendor's system"},
-        "content_type":     {"type": "string", "description": "The content type of attachment like application/pdf or application/png"},
-        "content_length":   {"type": "integer", "description": "The content length of the attachment"},
-        "action_url":       {"type": "string", "description": "URL to stream the attachment through Mobile Flows"},
-        "action_type":      {"type": "string", "description": "Http method to retrieve action_url"},
-        "created_at":       {"type": "string", "format": "date-time", "description": "Indicates when the card body field item was created"},
-        "updated_at":       {"type": "string", "format": "date-time", "description": "Indicates when the card body field item was updated"}
+        "type": {"type": "string", "description": "The type of card body field item"},
+        "title": {"type": "string", "description": "Title of the card body field item"},
+        "description": {"type": "string", "description": "Description of the card body field item"},
+        "attachment_name": {"type": "string", "description": "Name of the attachment"},
+        "vendor_attachment_url": {"type": "string", "description": "Deep link URL of the attachment in the vendor's system"},
+        "attachment_content_type": {"type": "string", "description": "The content type of attachment like application/pdf or application/png"},
+        "attachment_content_length": {"type": "integer", "description": "The content length of the attachment"},
+        "attachment_url": {"type": "string", "description": "URL to stream the attachment through Mobile Flows"},
+        "attachment_method": {"type": "string", "description": "Http method to retrieve attachment_url"},
+        "created_at": {"type": "string", "format": "date-time", "description": "Indicates when the card body field item was created"},
+        "updated_at": {"type": "string", "format": "date-time", "description": "Indicates when the card body field item was updated"}
       }
     },
 
