@@ -107,7 +107,7 @@
       "type": "object",
       "additionalProperties": {
         "$ref": "#/definitions/connector_level_action",
-        "description": "Each additional property is a connector level action."
+        "description": "Each additional property describes about a connector level action"
       }
     },
     "connector_level_action": {
@@ -133,11 +133,11 @@
         },
         "label": {
           "type": "object",
-          "description": "Localised human-readable description of the action."
+          "description": "Localised human-readable description of the action. Locale is the key (ex. en-US, en-GB, en-IN, etc.) and the description is the value."
         },
         "completed_label": {
           "type": "object",
-          "description": "A Localised message that says if the action was success in the backend."
+          "description": "A localized message that says whether the action was successful. Locale is the key and the message is the value.",
         },
         "type": {
           "$ref": "#/definitions/http_methods",
@@ -180,15 +180,18 @@
         },
         "label": {
           "type": "object",
-          "description": "Localised field's label, which will be displayed to the user to describe the expected content of the field."
+          "description": "Localised field's label, which will be displayed to the user to describe the expected content of the field. Locale is the key and the message is the value."
         },
         "format": {
           "type": "string",
           "description": "The format type of the user input."
         },
         "select": {
-          "type": "object",
-          "description": "If the format is 'select', choices for selecting should also be specified."
+          "type": "array",
+          "description": "If the format is 'select', choices for selecting should also be specified.",
+          "items": {
+            "$ref": "#/definitions/connector_action_user_input_select"
+          }
         },
         "min_length": {
           "type": "integer",
@@ -219,6 +222,20 @@
         "format"
       ]
     },
+    "connector_action_user_input_select": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "This is used as the form value while submitting the action."
+        },
+        "label": {
+          "type": "object",
+          "description": "Localised label for the select choice. Locale is the key and the label is the value."
+        }
+      },
+      "required": ["value"]
+    },
     "configs": {
       "type": "object",
       "additionalProperties": {
@@ -239,11 +256,11 @@
         },
         "label": {
           "type": "object",
-          "description": "Localised short label for the config field, that will be displayed in the admin dashboard."
+          "description": "Localised short label for the config field, that will be displayed in the admin dashboard. Locale is the key and the message is the value."
         },
         "description": {
           "type": "object",
-          "description": "Localised description for the config field."
+          "description": "Localised description for the config field. Locale is the key and the message is the value."
         },
         "validators": {
           "type": "array",
@@ -255,8 +272,7 @@
       },
       "required": [
         "type",
-        "label",
-        "description"
+        "label"
       ]
     },
     "config_validator": {
@@ -268,7 +284,7 @@
         },
         "description": {
           "type": "object",
-          "description": "Localised description for the validator."
+          "description": "Localised description for the validator. Locale is the key and the message is the value."
         },
         "value": {
           "type": "string",
