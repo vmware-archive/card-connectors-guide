@@ -137,7 +137,7 @@
         },
         "completed_label": {
           "type": "object",
-          "description": "A localized message that says whether the action was successful. Locale is the key and the message is the value.",
+          "description": "A localized message that says whether the action was successful. Locale is the key and the message is the value."
         },
         "type": {
           "$ref": "#/definitions/http_methods",
