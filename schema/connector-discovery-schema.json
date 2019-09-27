@@ -40,8 +40,12 @@
     "object_types": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/object_type",
-        "description": "Each additional property is an object type."
+        "anyOf": [
+          {
+            "$ref": "#/definitions/object_type",
+            "description": "Each additional property is an object type."
+          }
+        ]
       }
     },
     "object_type": {
@@ -54,8 +58,12 @@
         "fields": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/input_field",
-            "description": "Each additional property describes an input field."
+            "anyOf": [
+              {
+                "$ref": "#/definitions/input_field",
+                "description": "Each additional property describes an input field."
+              }
+            ]
           }
         },
         "pollable": {
@@ -106,9 +114,13 @@
     "actions": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/connector_level_action",
-        "description": "Each additional property describes about a connector level action"
-      }
+        "anyOf": [
+          {
+            "$ref": "#/definitions/connector_level_action",
+            "description": "Each additional property describes about a connector level action"
+          }
+        ]
+     }
     },
     "connector_level_action": {
       "type": "object",
@@ -127,8 +139,12 @@
         "fields": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "#/definitions/input_field",
-            "description": "Each additional property describes an input field."
+            "anyOf": [
+              {
+                "$ref": "#/definitions/input_field",
+                "description": "Each additional property describes an input field."
+              }
+            ]
           }
         },
         "label": {
@@ -239,8 +255,12 @@
     "configs": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "#/definitions/config",
-        "description": "Each additional property is a connector level configuration."
+        "anyOf": [
+          {
+            "$ref": "#/definitions/config",
+            "description": "Each additional property is a connector level configuration."
+          }
+        ]
       }
     },
     "config": {
