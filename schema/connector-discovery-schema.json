@@ -104,9 +104,9 @@
         }
       },
       "dependencies": {
-        "regex": {
+        "capture_group": {
           "required": [
-            "capture_group"
+            "regex"
           ]
         }
       }
