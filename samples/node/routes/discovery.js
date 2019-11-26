@@ -17,19 +17,35 @@ exports.root = function (req, res) {
                 },
                 user_input: [],
                 request: {},
-                label: 'Clear Reported Data',
+                label: {
+                    'en-US': 'Clear Reported Data'
+                },
                 type: 'POST',
                 action_key: 'DIRECT'
             }
         },
         object_types: {
             card: {
-                doc: {href: "https://github.com/vmwaresamples/card-connectors-guide/wiki/Card-Responses"},
+                doc: {href: "https://github.com/vmware-samples/card-connectors-guide/wiki/Card-Responses"},
                 fields: {
                     zip: {capture_group: 1, regex: "([0-9]{5})(?:[- ][0-9]{4})?"}
                 },
+                pollable: true,
                 endpoint: {href: `${base}/cards/requests`}
             }
+        },
+        // Logic for this config not implemented.  Value is present to provide mock config data in discovery.
+        config: {
+            defaultZip: {
+                default: '30188',
+                type: 'String',
+                label: {
+                    'en-US': 'Default Zip for requests that omit zip field'
+                },
+                description: {
+                    'en-US': 'Default Zip that will be used for all requests which do not include a value for the zip field'
+                }
+            } 
         }
     };
     res.json(body);
