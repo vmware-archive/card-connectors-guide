@@ -9,19 +9,26 @@ const uuidV4 = require('uuid/v4');
 const sha1 = require('sha1');
 
 exports.requestCards = function(req, res) {
-    if (!req.body.tokens) {
-        res.status(400).send("Missing tokens field");
+    let tokenZip = (req.body.tokens && req.body.tokens.zip) ? req.body.tokens.zip : null;
+    let configZip = (req.body.config && req.body.config.defaultZip) ? [req.body.config.defaultZip] : null;
+
+    if (!tokenZip && !configZip) {
+        res.status(400).send("Missing zip.  Please provide one in tokens or config.");
         return;
     }
 
-    // Treat missing zips and empty zips the same way
-    const zips = req.body.tokens.zip || [];
+    console.log(`tokenZip: ${tokenZip}`);
+    console.log(`configZip: ${configZip}`);
+
+    const zips = tokenZip ? tokenZip : configZip;
+
+    console.log(`Zips: ${zips}`);
 
     // Real connectors will probably insist on receiving X-Routing-Prefix.
     // We will be more lax here.
     const routingPrefix = req.headers['x-routing-prefix'] || '/';
 
-    res.json({objects: zips.map(function(zip){
+    res.json({objects: zips.map(function(zip) {
       return toCard(zip, routingPrefix);
     })});
 };
