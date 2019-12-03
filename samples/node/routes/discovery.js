@@ -34,7 +34,6 @@ exports.root = function (req, res) {
                 endpoint: {href: `${base}/cards/requests`}
             }
         },
-        // Logic for this config not implemented.  Value is present to provide mock config data in discovery.
         config: {
             defaultZip: {
                 default: '30188',
