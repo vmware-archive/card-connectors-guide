@@ -9,6 +9,7 @@ const uuidV4 = require('uuid/v4');
 const sha1 = require('sha1');
 
 exports.requestCards = function(req, res) {
+    console.log('cards called: ', req.body);
     let tokenZip = (req.body.tokens && req.body.tokens.zip) ? req.body.tokens.zip : null;
     let configZip = (req.body.config && req.body.config.defaultZip) ? [req.body.config.defaultZip] : null;
 
