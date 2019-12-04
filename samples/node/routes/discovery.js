@@ -10,45 +10,6 @@ exports.root = function (req, res) {
     const body = {
         image: {href: `${base}/images/connector.png`},
         test_auth: {href: `${base}/test-auth`},
-        config: {
-            foo: {
-                default: 'bar',
-                type: 'STRING',
-                label: {
-                    'en-US': 'Foo',
-                    'es-ES': 'Foo'
-                },
-                description: {
-                    'en-US': 'This ...',
-                    'es-ES': 'Este ...'
-                },
-                validators: [
-                    {
-                        type: 'required',
-                        description: {
-                            'en-US': 'Foo is required',
-                            'es-ES': '...'
-                        }
-                    },
-                    {
-                        type: 'regex',
-                        value: '^\\w+$',
-                        description: {
-                            'en-US': 'Foo must be only letters and number',
-                            'es-ES': '...'
-                        }
-                    },
-                    {
-                        type: 'max_length',
-                        value: '10',
-                        description: {
-                            'en-US': 'Foo must not be more than 10 characters',
-                            'es-ES': '...'
-                        }
-                    }
-                ]
-            }
-        },
         actions: {
             clear: {
                 url: {
@@ -56,7 +17,9 @@ exports.root = function (req, res) {
                 },
                 user_input: [],
                 request: {},
-                label: 'Clear Reported Data',
+                label: {
+                    'en-US': 'Clear Reported Data'
+                },
                 type: 'POST',
                 action_key: 'DIRECT'
             }
@@ -67,8 +30,41 @@ exports.root = function (req, res) {
                 fields: {
                     zip: {capture_group: 1, regex: "([0-9]{5})(?:[- ][0-9]{4})?"}
                 },
+                pollable: true,
                 endpoint: {href: `${base}/cards/requests`}
             }
+        },
+        // Sample config.  For full spec see: https://vmware-samples.github.io/card-connectors-guide/#schema/connector-discovery-schema.json
+        config: {
+            defaultZip: {
+                type: 'STRING',
+                label: {
+                    'en-US': 'Default Zip Code',
+                    'es-ES': 'Código Postal predeterminado'
+                },
+                description: {
+                    'en-US': 'Default Zip Code that will be used for all requests which do not include a Zip Code',
+                    'es-ES': 'Código Postal predeterminado que se usará para todas las solicitudes que no incluyan un Código Postal'
+                },
+                validators: [
+                    {
+                        type: 'regex',
+                        value: '([0-9]{5})(?:[- ][0-9]{4})?',
+                        description: {
+                            'en-US': 'Connector supports the basic 5 digit Zip Code format as well as expanded ZIP+4',
+                            'es-ES': 'El conector admite el formato básico de código postal de 5 dígitos y Zip expandido Zip+4'
+                        }
+                    },
+                    {
+                        type: 'max_length',
+                        value: '10',
+                        description: {
+                            'en-US': 'Default Zip Code must not be more than 10 characters',
+                            'es-ES': 'El código postal predeterminado no debe tener más de 10 caracteres'
+                        }
+                    }
+                ]
+            } 
         }
     };
     res.json(body);

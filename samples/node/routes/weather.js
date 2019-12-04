@@ -11,19 +11,37 @@ const sha1 = require('sha1');
 exports.requestCards = function(req, res) {
     console.log('cards called: ', req.body);
 
-    if (!req.body.tokens) {
-        res.status(400).send("Missing tokens field");
+    let tokenZip = req.body.tokens && req.body.tokens.zip;
+    let configZip = req.body.config && req.body.config.defaultZip;
+
+    console.log(`tokenZip: ${tokenZip}`);
+    console.log(`configZip: ${configZip}`);
+
+    if (!tokenZip && !configZip) {
+        res.status(400).send("Missing zip.  Please provide one in tokens or config.");
         return;
     }
 
-    // Treat missing zips and empty zips the same way
-    const zips = req.body.tokens.zip || [];
+    const zips = tokenZip || [configZip];
+    
+    let validInput = zips.every(zip => {
+        return /^([0-9]{5})(?:[- ][0-9]{4})?$/.test(zip);
+    });
 
+    console.log(`Valid Input: ${validInput}`);
+
+    if (!validInput) {
+        res.status(400).send("Invalid input.  This connector supports numerical Zip Codes and Zip+4 with max length 10.");
+        return;
+    }
+
+    console.log(`Zips: ${zips}`);
+    
     // Real connectors will probably insist on receiving X-Routing-Prefix.
     // We will be more lax here.
     const routingPrefix = req.headers['x-routing-prefix'] || '/';
 
-    res.json({objects: zips.map(function(zip){
+    res.json({objects: zips.map(function(zip) {
       return toCard(zip, routingPrefix);
     })});
 };
