@@ -20,6 +20,7 @@
         "image":         {"$ref": "#/definitions/link", "description": "Link to an image to use for the card's icon"},
         "creation_date": {"type": "string", "format": "date-time", "description": "When the card was created. In ISO 8601 format"},
         "expiration_date" :{"type": "string", "format": "date-time", "description": "When the card will expire. In ISO 8601 format"},
+        "due_date":     {"type": "string", "format": "date-time", "description": "When the card is due. In ISO 8601 format"},
         "template":     {"$ref": "#/definitions/link", "description": "Link to a Handlebars template for rendering the card"},
         "header":       {"$ref": "#/definitions/cardHeader", "description": "The card's header"},
         "body":         {"$ref": "#/definitions/cardBody", "description": "The card's body"},
