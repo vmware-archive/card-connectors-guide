@@ -128,21 +128,22 @@
           "pattern": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$",
           "description": "Unique ID of the action"
         },
-        "action_key": {"type": "string", "description": "An arbitrary string used by the client to distinguish this action from other actions that may be sent"},
-        "label":      {"type": "string", "description": "A human-readable description of the action to be shown in the card"},
-        "mutually_exclusive_set_id": {"type": "string", "description": "A string to allow grouping of actions. When an action in this group successfully completes, the other actions will hide."},
-        "completed_label":      {"type": "string", "description": "A human-readable message to display on successful completion of the action"},
-        "primary":    {"type": "boolean", "description": "Whether or not the action is a primary action and should be colored differently than the non-primary actions"},
-        "url":        {"$ref": "#/definitions/link", "description": "Link to the action. Optionally prefixed with X-Routing-Prefix. See Request Headers in wiki"},
-        "type":       {"$ref": "#/definitions/httpMethods", "description": "The HTTP method to use for submitting the action request"},
+        "action_key":                 {"type": "string", "description": "An arbitrary string used by the client to distinguish this action from other actions that may be sent"},
+        "label":                      {"type": "string", "description": "A human-readable description of the action to be shown in the card"},
+        "mutually_exclusive_set_id":  {"type": "string", "description": "A string to allow grouping of actions. When an action in this group successfully completes, the other actions will hide."},
+        "completed_label":            {"type": "string", "description": "A human-readable message to display on successful completion of the action"},
+        "primary":                    {"type": "boolean", "description": "Whether or not the action is a primary action and should be colored differently than the non-primary actions"},
+        "mfa_required":               {"type": "boolean", "description": "Indicates whether client application must take additional steps to verify the identity of the user interacting with an action. Client applications MUST decline to submit any action where mfa_required is TRUE and the client is unable to verify the current user's identity."},
+        "url":                        {"$ref": "#/definitions/link", "description": "Link to the action. Optionally prefixed with X-Routing-Prefix. See Request Headers in wiki"},
+        "type":                       {"$ref": "#/definitions/httpMethods", "description": "The HTTP method to use for submitting the action request"},
+        "request":                    {"type": "object", "description": "Hard-coded fields to be sent with the action request"},
+        "allow_repeated" :            {"type": "boolean", "description": "Whether or not the action can be clicked again after successfully completed"},
+        "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of this action"},     
         "user_input": {
           "type": "array",
           "items": {"$ref": "#/definitions/cardActionUserInput"},
           "description": "Allows the user to enter data to be submitted in this action"
-        },
-        "request":    {"type": "object", "description": "Hard-coded fields to be sent with the action request"},
-        "allow_repeated" : {"type": "boolean", "description": "Whether or not the action can be clicked again after successfully completed"},
-        "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of this action"}
+        }
       },
       "required": ["id", "action_key", "label", "completed_label", "url", "type"]
     },
