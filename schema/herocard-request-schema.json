@@ -3,10 +3,6 @@
   "title": "Hero Card Request schema",
 
   "properties": {
-    "connector_id":     {
-      "type": "string",
-      "description": "The ID of the connector"
-    },
     "config": {
       "type": "object",
       "description": "String key value pairs that are the config stored for a tenant connector in the Mobile Flows DB"
