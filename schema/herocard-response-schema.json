@@ -53,7 +53,7 @@
       "properties": {
           "title": {
             "description": "Link to backend application title",
-            "type": "string", 
+            "type": "string",
             "format": "uri"
           },
           "subtitle": {
@@ -95,11 +95,25 @@
           "items": {"type": "object"},
           "description": "The content of this field, which can consist of arbitrary JSON objects. The client will use the field's type attribute to determine how to parse the content."
         },
+        "comments": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/cardBodyFieldCommentsItem"},
+          "description": "It enables users to view all the comments added"
+        },
         "items": {
           "type": "array",
           "items": {"$ref": "#/definitions/cardBodyFieldItem"},
           "description": "The fields of the card body field items. Used by the hub client to display different sections"
         }
+      }
+    },
+
+    "cardBodyFieldCommentsItem": {
+      "type": "object",
+      "properties": {
+        "display_name": {"type": "string", "description": "Name of the user who added the comment"},
+        "text": {"type": "string", "description": "The comment text"},
+        "creation_date": {"type": "string", "format": "date-time", "description": "Indicates when the comment field item was created"}
       }
     },
 
@@ -138,7 +152,7 @@
         "type":                       {"$ref": "#/definitions/httpMethods", "description": "The HTTP method to use for submitting the action request"},
         "request":                    {"type": "object", "description": "Hard-coded fields to be sent with the action request"},
         "allow_repeated" :            {"type": "boolean", "description": "Whether or not the action can be clicked again after successfully completed"},
-        "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of this action"},     
+        "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of this action"},
         "user_input": {
           "type": "array",
           "items": {"$ref": "#/definitions/cardActionUserInput"},
