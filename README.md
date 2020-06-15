@@ -37,6 +37,12 @@ $ curl -H "Authorization: Bearer mobileflows-token" \
 ```
 A stubbed service based on the above can be found in the [samples section](samples/node) of this project.
 
+## Connector commons
+Common libraries are available for VMWare customers who want to write connectors.
+- For Java common libraries, please visit the [link](https://github.com/vmware/connectors-workspace-one/tree/master/connectors-common)
+- For Express Node.js libraries, please visit the [link](https://github.com/vmware-samples/mobile-flows-connectors-common-libraries) 
+
+
 ## Further reading
 
 For a detailed specification, please see the [wiki](https://github.com/vmware-samples/card-connectors-guide/wiki).
