@@ -27,6 +27,7 @@
         "hash":         {"type": "string", "description": "A hash to help Mobile Flows determine if this card is new or has been seen before"},
         "backend_id":   {"type": "string", "description": "An optional ID to help correlate card results from one request to the next.  A card with the same backend_id as a previously returned card should represent that each card was built interacting with the same backend data."},
         "actions":      {"type": "array", "items": {"$ref": "#/definitions/cardAction"}, "description": "Available actions to display on the card, listed in order of importance (most important first)"},
+        "sticky":       {"$ref":  "#/definitions/sticky", "description":  "The card's sticky properties"},
         "tags":         {"type": "array", "items": {"type": "string"}, "description": "Arbitrary tags applied to the card"}
       }
     },
@@ -173,6 +174,20 @@
         "max_length": {"type": "integer", "minimum": 0, "description": "The maximum length of the field"}
       },
       "required": ["id", "label"]
+    },
+
+    "sticky": {
+      "type": "object",
+      "properties": {
+        "until": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Used to determine until when the client should exhibit stickiness behaviour on the card. Its in ISO 8601 format."
+        }
+      },
+      "required": [
+        "until"
+      ]
     },
 
     "httpMethods": {
