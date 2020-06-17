@@ -22,6 +22,7 @@
         "expiration_date" :{"type": "string", "format": "date-time", "description": "When the card will expire. In ISO 8601 format"},
         "template":     {"$ref": "#/definitions/link", "description": "Link to a Handlebars template for rendering the card"},
         "header":       {"$ref": "#/definitions/cardHeader", "description": "The card's header"},
+        "links":        {"type": "array", "items": {"$ref": "#/definitions/openInLink"}, "description": "An array of links to take user to the associated resources."},
         "body":         {"$ref": "#/definitions/cardBody", "description": "The card's body"},
         "hash":         {"type": "string", "description": "A hash to help Mobile Flows determine if this card is new or has been seen before"},
         "backend_id":   {"type": "string", "description": "An optional ID to help correlate card results from one request to the next.  A card with the same backend_id as a previously returned card should represent that each card was built interacting with the same backend data."},
@@ -38,6 +39,15 @@
       "required": ["href"]
     },
 
+    "openInLink": {
+      "type": "object",
+      "properties": {
+        "href": {"type": "string", "format": "uri"},
+        "text": {"type": "string", "description": "A short description about this link."}
+      },
+      "required": ["href", "text"]
+    },
+
     "cardHeader": {
       "type": "object",
       "properties": {
@@ -52,7 +62,7 @@
       "properties": {
           "title": {
             "description": "Link to backend application title",
-            "type": "string", 
+            "type": "string",
             "format": "uri"
           },
           "subtitle": {
