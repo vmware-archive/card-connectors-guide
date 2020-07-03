@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Action failure response schema",
+  "type": "object",
+  "properties": {
+    "title": {"type": "string", "description": "Short message on what happened with the action." },
+    "error_message": {"type": "string", "description": "An explanation about why the action was failed to execute. If applicable, also explain what user could do." },
+    "links": {"type": "array", "items": {"$ref": "#/definitions/openInLink" }, "description": "An optional array of links which explains in detail about action failure and/or how to fix them."},
+    "actions": {"type": "array", "items": {"$ref": "#/definitions/openInAction" }, "description": "Optionally give a link to the backend where necessary changes can be done, so that action would work."}
+  },
+
+  "required": ["title", "error_message"],
+
+  "definitions": {
+    "link": {
+      "type": "object",
+      "properties": {
+        "href": {"type": "string", "format": "uri"}
+      },
+      "required": ["href"]
+    },
+
+    "openInLink": {
+      "type": "object",
+      "properties": {
+        "href": {"type": "string", "format": "uri"},
+        "text": {"type": "string", "description": "A short description about this link or write how this will be useful for the user."}
+      },
+      "required": ["href", "text"]
+    },
+
+    "openInAction": {
+      "type": "object",
+      "properties": {
+        "label": {"type": "string", "description": "A description about this action."},
+        "primary": {"type": "boolean", "description": "Is it a primary action and should be colored differently than the non-primary actions"},
+        "url": {"$ref": "#/definitions/link", "description": "Link to the action."},
+        "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of this action"}
+      },
+      "required": ["label", "url"]
+    }
+  }
+}
