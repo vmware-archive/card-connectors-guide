@@ -5,7 +5,6 @@
   "properties": {
     "title": {"type": "string", "description": "Short message on what happened with the action." },
     "error_message": {"type": "string", "description": "An explanation about why the action was failed to execute. If applicable, also explain what user could do." },
-    "links": {"type": "array", "items": {"$ref": "#/definitions/openInLink" }, "description": "An optional array of links which explains in detail about action failure and/or how to fix them."},
     "actions": {"type": "array", "items": {"$ref": "#/definitions/openInAction" }, "description": "Optionally give a link to the backend where necessary changes can be done, so that action would work."}
   },
 
@@ -18,15 +17,6 @@
         "href": {"type": "string", "format": "uri"}
       },
       "required": ["href"]
-    },
-
-    "openInLink": {
-      "type": "object",
-      "properties": {
-        "href": {"type": "string", "format": "uri"},
-        "text": {"type": "string", "description": "A short description about this link or write how this will be useful for the user."}
-      },
-      "required": ["href", "text"]
     },
 
     "openInAction": {
