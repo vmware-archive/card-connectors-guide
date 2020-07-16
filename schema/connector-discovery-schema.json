@@ -70,6 +70,16 @@
           "type": "boolean",
           "description": "A hint for the client that polling for this object_type might produce objects containing new data."
         },
+        "pre_hire_capable": {
+          "default": false,
+          "type": "boolean",
+          "description": "A hint for the client that object_type is pre-hire capable. Default value is false."
+        },
+        "post_hire_capable": {
+          "default": true,
+          "type": "boolean",
+          "description": "A hint for the client that object_type is post-hire capable. Default value is true."
+        },
         "metadata": {
           "type": "object",
           "description": "Free form key-value pairs. Can contain additional metadata about the object_type, if anything is required by client."
