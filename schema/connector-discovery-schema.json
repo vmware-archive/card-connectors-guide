@@ -91,6 +91,17 @@
             ]
           }
         },
+        "supported_workflows": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/supported_workflow",
+                "description": "Each additional property is a supported chatbot workflow. Key is the unique workflowId to associate it with a single workflow in the botDiscovery object"
+              }
+            ]
+          }
+        },
         "metadata": {
           "type": "object",
           "description": "Free form key-value pairs. Can contain additional metadata about the object_type, if anything is required by client."
@@ -142,6 +153,15 @@
         "category": {
           "type": "string",
           "description": "A category name for the action. This helps client to categorize the action into a separate view section."
+        }
+      }
+    },
+    "supported_workflow": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "object",
+          "description": "Localised name for the chatbot workflow. Locale is the key and the label is the value."
         }
       }
     },
