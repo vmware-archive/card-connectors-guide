@@ -161,6 +161,7 @@
         "mfa_required":               {"type": "boolean", "description": "Indicates whether client application must take additional steps to verify the identity of the user interacting with an action. Client applications MUST decline to submit any action where mfa_required is TRUE and the client is unable to verify the current user's identity."},
         "url":                        {"$ref": "#/definitions/link", "description": "Link to the action. Optionally prefixed with X-Routing-Prefix. See Request Headers in wiki"},
         "type":                       {"$ref": "#/definitions/httpMethods", "description": "The HTTP method to use for submitting the action request"},
+        "content_type":               {"type": "string", "description": "The Content-Type for the client to use when submitting the action request (the default is application/x-www-form-urlencoded)"},
         "request":                    {"type": "object", "description": "Hard-coded fields to be sent with the action request"},
         "allow_repeated" :            {"type": "boolean", "description": "Whether or not the action can be clicked again after successfully completed"},
         "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of this action"},
@@ -190,6 +191,10 @@
     "sticky": {
       "type": "object",
       "properties": {
+        "type": {
+          "type": "string",
+          "description": "Used to specify the type of sticky card"
+        },
         "until": {
           "type": "string",
           "format": "date-time",
