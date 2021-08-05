@@ -224,7 +224,7 @@
         "min_length":      {"type": "integer", "minimum": 0, "description": "The minimum length of the field"},
         "max_length":      {"type": "integer", "minimum": 0, "description": "The maximum length of the field"},
         "min_value":       {"type": "integer", "description": "The minimum value of the field (for numeric types). If none provided, default is 1."},
-        "max_value":       {"type": "integer", "description": "The maximum value of the field (for numeric types). If none provided, default is 5. Native apps limits this value to no more than 10."}
+        "max_value":       {"type": "integer", "description": "The maximum value of the field (for numeric types). If none provided, default is 5."}
       },
       "required": ["id", "label"]
     },
