@@ -221,6 +221,7 @@
         "format":          {"type": "string", "description": "The type of the user input"},
         "display_content": {"type": "string", "description": "Content to be displayed with the user input field to further explain or prompt it"},
         "options":         {"type": "object", "description": "Options to present when format is select."},
+        "ordered_options": [{"type": "object", "description": "Options specifically ordered to present more than 1 value."}],
         "min_length":      {"type": "integer", "minimum": 0, "description": "The minimum length of the field"},
         "max_length":      {"type": "integer", "minimum": 0, "description": "The maximum length of the field"},
         "min_value":       {"type": "integer", "description": "The minimum value of the field (for numeric types). If none provided, default is 1."},
