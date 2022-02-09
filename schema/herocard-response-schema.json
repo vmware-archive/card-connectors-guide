@@ -14,7 +14,7 @@
       "properties":     {
         "id":           {"type": "string",
           "description": "Unique ID of the card",
-          "pattern": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$"
+          "pattern": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}\\z"
         },
         "importance":    {"type": "integer", "description": "The importance of the card. An importance of 0 is the highest importance and larger numbers indicate lower importance"},
         "image":         {"$ref": "#/definitions/link", "description": "Link to an image to use for the card's icon"},
@@ -189,7 +189,7 @@
       "properties": {
         "id":         {
           "type": "string",
-          "pattern": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$",
+          "pattern": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}\\z",
           "description": "Unique ID of the action"
         },
         "action_key":                 {"type": "string", "description": "An arbitrary string used by the client to distinguish this action from other actions that may be sent"},
