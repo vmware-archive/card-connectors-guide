@@ -204,11 +204,7 @@
         "request":                    {"type": "object", "description": "Hard-coded fields to be sent with the action request"},
         "allow_repeated" :            {"type": "boolean", "description": "Whether or not the action can be clicked again after successfully completed"},
         "remove_card_on_completion" : {"type": "boolean", "description": "Whether or not clients should remove the card upon successful completion of this action"},
-        "confirmation": {
-          "type": "object",
-          "items": {"$ref":  "#/definitions/cardActionConfirmation"},
-          "description": "Allows the user to cancel or confirm operations"
-        },
+        "confirmation":               {"$ref":  "#/definitions/cardActionConfirmation", "description": "Allows the user to cancel or confirm operations"},
         "user_input": {
           "type": "array",
           "items": {"$ref": "#/definitions/cardActionUserInput"},
